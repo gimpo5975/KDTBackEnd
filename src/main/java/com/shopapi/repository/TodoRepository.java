@@ -7,4 +7,4 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
 
 
-}//end of class
+}//end of interface
