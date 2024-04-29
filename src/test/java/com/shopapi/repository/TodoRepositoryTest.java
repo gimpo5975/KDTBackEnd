@@ -6,6 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -47,12 +51,13 @@ public class TodoRepositoryTest {
     @Test
     @DisplayName("데이터 조회 테스트")
     public void testRead(){
-        Long tno = 20l;
+        Long tno = 5l;
 
         Optional<Todo> result = todoRepository.findById(tno);
 
         Todo todo = result.orElseThrow();
 
+        log.info("----------");
         log.info(todo);
 
     }
@@ -60,7 +65,7 @@ public class TodoRepositoryTest {
     @Test
     @DisplayName("데이터 수정 테스트")
     public void testModify(){
-        Long tno = 25l;
+        Long tno = 2l;
 
         Optional<Todo> result = todoRepository.findById(tno);
 
@@ -80,4 +85,20 @@ public class TodoRepositoryTest {
 
         todoRepository.deleteById(tno);
     }
-}
+
+    @Test
+    @DisplayName("페이징 처리 테스트")
+    public void testPaging(){
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("tno").descending());
+        Page<Todo> result = todoRepository.findAll(pageable);
+
+        log.info("--------------------");
+        log.info(result.getTotalElements());
+
+        result.getContent().stream().forEach(todo -> log.info(todo));
+    }
+
+
+
+}//end of class
