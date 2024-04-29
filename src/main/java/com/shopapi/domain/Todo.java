@@ -22,6 +22,6 @@ public class Todo {
     //    @Column(nullable = false)
     private String writer;
     private boolean complete;
-    private LocalDate legDate;
+    private LocalDate dueDate;
 
 }
