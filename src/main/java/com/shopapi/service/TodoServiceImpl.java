@@ -1,5 +1,6 @@
 package com.shopapi.service;
 
+
 import com.shopapi.domain.Todo;
 import com.shopapi.dto.TodoDTO;
 import com.shopapi.repository.TodoRepository;
@@ -14,16 +15,19 @@ import java.util.Optional;
 @Service
 @Transactional
 @Log4j2
-@RequiredArgsConstructor
-public class TodoServiceImpl implements TodoService {
+@RequiredArgsConstructor  //생성자 자동 주입
+public class TodoServiceImpl implements TodoService{
 
+    //자동 주입 대상은 final
     private final ModelMapper modelMapper;
     private final TodoRepository todoRepository;
 
+
+    //#1. 등록(insert)
     @Override
     public Long register(TodoDTO todoDTO) {
 
-        log.info(".........");
+        log.info("등록!!! .........");
 
         Todo todo = modelMapper.map(todoDTO, Todo.class);
 
@@ -33,10 +37,12 @@ public class TodoServiceImpl implements TodoService {
 
     }
 
+
+    //#2. 조회(select)
     @Override
     public TodoDTO get(Long tno) {
 
-        java.util.Optional<Todo> result = todoRepository.findById(tno);
+        Optional<Todo> result = todoRepository.findById(tno);
 
         Todo todo = result.orElseThrow();
 
@@ -45,6 +51,7 @@ public class TodoServiceImpl implements TodoService {
         return dto;
     }
 
+    //#3. 업데이트(update)
     @Override
     public void modify(TodoDTO todoDTO) {
 
@@ -60,10 +67,12 @@ public class TodoServiceImpl implements TodoService {
 
     }
 
+    //#4. 삭제(delete)
     @Override
     public void remove(Long tno) {
 
         todoRepository.deleteById(tno);
 
     }
+
 }
