@@ -45,4 +45,7 @@ class TodoServiceImplTest {
 //  스트림을 이용하면 배열이나 컬렉션 뿐만 아니라 파일에 저장된 데이터도 모두
 //  같은 방식으로 다룰 수 있음
 //  단, 한번 사용하면 닫혀서 다시 사용할 수 없음. 필요하다면 스트림을 다시 생성해야 함
+//  스트림은 데이터 소스를 변경하지 않는다. 데이터 소스로부터 데이터를 읽기만 할 뿐
+//  정렬된 결과를 컬렉션이나 배열에 담아서 반환할 수 있음
+//  List<String> sortList = strStream.sorted().collect(Collectors.toList());
 
