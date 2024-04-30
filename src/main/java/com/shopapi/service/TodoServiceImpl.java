@@ -2,6 +2,8 @@ package com.shopapi.service;
 
 
 import com.shopapi.domain.Todo;
+import com.shopapi.dto.PageRequestDTO;
+import com.shopapi.dto.PageResponseDTO;
 import com.shopapi.dto.TodoDTO;
 import com.shopapi.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
@@ -76,6 +78,16 @@ public class TodoServiceImpl implements TodoService{
 
         todoRepository.deleteById(tno);
 
+    }
+
+    @Override
+    public PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+        return null;
     }
 
 }

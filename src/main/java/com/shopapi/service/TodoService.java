@@ -1,6 +1,8 @@
 package com.shopapi.service;
 
 import com.shopapi.domain.Todo;
+import com.shopapi.dto.PageRequestDTO;
+import com.shopapi.dto.PageResponseDTO;
 import com.shopapi.dto.TodoDTO;
 
 public interface TodoService {
@@ -17,5 +19,8 @@ public interface TodoService {
     void remove(Long tno);
 
     //#5. 페이징
+    PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO);
 
+
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
 }//end of interface
