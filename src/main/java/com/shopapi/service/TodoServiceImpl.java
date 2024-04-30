@@ -43,7 +43,10 @@ public class TodoServiceImpl implements TodoService{
     public TodoDTO get(Long tno) {
 
         Optional<Todo> result = todoRepository.findById(tno);
-
+        //Optional : 래퍼 클래스
+        //  이것을 사용하지 않으면 매번 if 문을 이용해 null 인지 체크한 후 사용
+        //  이것을 이용하면 null 체크를 위한 if 문 없이도 NullPointerException 이 발생하지 않음
+        
         Todo todo = result.orElseThrow();
 
         TodoDTO dto = modelMapper.map(todo, TodoDTO.class);
