@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
+//PageResponseDTO 는 나중에 다른 타입의 DTO 들을 이용할 수 있도록 제네릭 타입으로 작성
+//PageResponseDTO 는 DTO 의 리시트와 전체 데이터의 수를 지정하면 페이지 처리에 필요한 번호나 이전/다음에 대한 처리를 함
 
 @Data
 public class PageResponseDTO<E> {
