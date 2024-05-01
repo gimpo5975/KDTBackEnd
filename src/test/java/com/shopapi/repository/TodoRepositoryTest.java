@@ -1,5 +1,7 @@
 package com.shopapi.repository;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.shopapi.domain.Todo;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +38,7 @@ public class TodoRepositoryTest {
     @DisplayName("데이터 추가 테스트")
     public void testInsert() {
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 100; i++) {
 
             Todo todo = Todo.builder()
                     .title("제목" + i)
@@ -51,13 +53,12 @@ public class TodoRepositoryTest {
     @Test
     @DisplayName("데이터 조회 테스트")
     public void testRead(){
-        Long tno = 5l;
+        Long tno = 20l;
 
         Optional<Todo> result = todoRepository.findById(tno);
 
         Todo todo = result.orElseThrow();
 
-        log.info("----------");
         log.info(todo);
 
     }
@@ -65,14 +66,14 @@ public class TodoRepositoryTest {
     @Test
     @DisplayName("데이터 수정 테스트")
     public void testModify(){
-        Long tno = 2l;
+        Long tno = 25l;
 
         Optional<Todo> result = todoRepository.findById(tno);
 
 
         Todo todo = result.orElseThrow();
-        todo.setTitle("기분 좋은날");
-        todo.setWriter("홍길동");
+//        todo.setTitle("기분 좋은날");
+//        todo.setWriter("홍길동");
 
         todoRepository.save(todo);
 
@@ -89,16 +90,25 @@ public class TodoRepositoryTest {
     @Test
     @DisplayName("페이징 처리 테스트")
     public void testPaging(){
-
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("tno").descending());
+        //Pageable pageable = PageRequest.of(페이지번호, 사이즈)
+        Pageable pageable = PageRequest.of(0,10, Sort.by("tno").descending());
         Page<Todo> result = todoRepository.findAll(pageable);
 
-        log.info("--------------------");
+        log.info("------------------------------------------");
         log.info(result.getTotalElements());
 
         result.getContent().stream().forEach(todo -> log.info(todo));
     }
+}
 
 
 
-}//end of class
+
+
+
+
+
+
+
+
+
