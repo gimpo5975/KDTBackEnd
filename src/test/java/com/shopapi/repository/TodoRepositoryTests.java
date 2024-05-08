@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @SpringBootTest
 @Log4j2
@@ -41,5 +42,18 @@ public class TodoRepositoryTests {
 
         log.info(result);//생성된 객체 확인
     }
+
+    @Test
+    public void testRead(){//객체 저장 테스트
+
+        Long tno = 1L;  //검색할 pk 임의 지정
+
+        Optional<Todo> result = todoRepository.findById(tno);//db 에서 pk 1인 데이터 검색
+
+        Todo todo = result.orElseThrow();   //todo 에 에러가 있으면 에러 반환
+
+        log.info(todo);
+    }
+
 
 }//end of class
