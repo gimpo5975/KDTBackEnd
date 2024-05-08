@@ -50,10 +50,29 @@ public class TodoRepositoryTests {
 
         Optional<Todo> result = todoRepository.findById(tno);//db 에서 pk 1인 데이터 검색
 
-        Todo todo = result.orElseThrow();   //todo 에 에러가 있으면 에러 반환
+        Todo todo = result.orElseThrow();
 
         log.info(todo);
     }
 
+
+    @Test
+    public void testUpdate(){//객체 저장 테스트
+
+        //먼저 로딩 하고 엔티티 객체를 변경 setter
+        Long tno = 1L;  //검색할 pk 임의 지정
+
+        Optional<Todo> result = todoRepository.findById(tno);//db 에서 pk 1인 데이터 검색
+
+        Todo todo = result.orElseThrow();
+
+        todo.setTitle("Update Title");
+        todo.setContent("Update Content");
+        todo.setComplete(true);
+
+        todoRepository.save(todo);
+        log.info(todo);
+
+    }
 
 }//end of class
