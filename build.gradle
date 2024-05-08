@@ -65,3 +65,5 @@ tasks.named('bootBuildImage') {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+compileJava.dependsOn('clean')
