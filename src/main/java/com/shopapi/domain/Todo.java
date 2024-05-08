@@ -25,6 +25,7 @@ public class Todo {
 
     private boolean complete;
 
+    @Column(name = "due_date")
     private LocalDate dueDate;
 
 }//end of class

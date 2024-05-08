@@ -40,7 +40,7 @@ public class TodoRepositoryTests {
             Todo todo = Todo.builder()  //객체 생성
                     .title("Title"+i)
                     .content("Content"+i)
-                    .deuDate(LocalDate.of(2024,5,8))
+                    .dueDate(LocalDate.of(2024,5,8))
                     .build();
 
             Todo result =  todoRepository.save(todo);   //데이터베이스에 객체 저장
