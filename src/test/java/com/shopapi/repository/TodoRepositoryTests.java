@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -32,15 +36,18 @@ public class TodoRepositoryTests {
 
     @Test
     public void testInsert(){//객체 저장 테스트
-        Todo todo = Todo.builder()  //객체 생성
-                .title("Title")
-                .content("Content")
-                .deuDate(LocalDate.of(2024,5,8))
-                .build();
+        for(int i=0;i<100; i++){
+            Todo todo = Todo.builder()  //객체 생성
+                    .title("Title"+i)
+                    .content("Content"+i)
+                    .deuDate(LocalDate.of(2024,5,8))
+                    .build();
 
-        Todo result =  todoRepository.save(todo);   //데이터베이스에 객체 저장
+            Todo result =  todoRepository.save(todo);   //데이터베이스에 객체 저장
 
-        log.info(result);//생성된 객체 확인
+            log.info(result);//생성된 객체 확인
+        }
+
     }
 
     @Test
@@ -57,7 +64,7 @@ public class TodoRepositoryTests {
 
 
     @Test
-    public void testUpdate(){//객체 저장 테스트
+    public void testUpdate(){//객체 변경 테스트
 
         //먼저 로딩 하고 엔티티 객체를 변경 setter
         Long tno = 1L;  //검색할 pk 임의 지정
@@ -73,6 +80,20 @@ public class TodoRepositoryTests {
         todoRepository.save(todo);
         log.info(todo);
 
+    }
+
+    @Test
+    public void testPaging(){
+        
+        //페이지 번호는 0부터
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("tno").descending());
+
+        Page<Todo> result =  todoRepository.findAll(pageable);
+
+        log.info(result.getTotalElements());
+
+        log.info(result.getContent());
+        
     }
 
 }//end of class
