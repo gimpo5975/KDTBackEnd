@@ -2,7 +2,9 @@ package com.shopapi.service;
 
 import com.shopapi.domain.Todo;
 import com.shopapi.dto.TodoDTO;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public interface TodoService {
 
     TodoDTO get(Long tno);
