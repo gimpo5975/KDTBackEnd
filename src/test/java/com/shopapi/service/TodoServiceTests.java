@@ -1,6 +1,7 @@
 package com.shopapi.service;
 
 import com.shopapi.domain.Todo;
+import com.shopapi.dto.PageRequestDTO;
 import com.shopapi.dto.TodoDTO;
 import com.shopapi.repository.TodoRepository;
 import lombok.extern.log4j.Log4j2;
@@ -53,6 +54,16 @@ public class TodoServiceTests {
         todoService.modify(dto);
     }
 
+
+    @Test
+    public void testGetList(){
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(10)
+                .build();
+        log.info(todoService.getList(pageRequestDTO));
+
+    }
 
 
 }

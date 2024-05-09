@@ -1,14 +1,19 @@
 package com.shopapi.service;
 
 import com.shopapi.domain.Todo;
+import com.shopapi.dto.PageRequestDTO;
+import com.shopapi.dto.PageResponseDTO;
 import com.shopapi.dto.TodoDTO;
 import com.shopapi.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -60,6 +65,26 @@ public class TodoServiceImpl implements TodoService {
 
     }
 
+    @Override
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+
+        //JPA
+        Page<Todo> result = todoRepository.search1(pageRequestDTO);
+
+        List<TodoDTO> dtoList =  result
+                .get()
+                .map(todo -> entityToDTO(todo)).collect(Collectors.toList());
+
+        PageResponseDTO<TodoDTO> responseDTO =
+                PageResponseDTO.<TodoDTO>withAll()
+                        .dtoList(dtoList)
+                        .pageRequestDTO(pageRequestDTO)
+                        .total(result.getTotalElements())
+                        .build();
+
+
+        return responseDTO;
+    }
 
 
 }//end of interface

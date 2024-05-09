@@ -1,6 +1,8 @@
 package com.shopapi.service;
 
 import com.shopapi.domain.Todo;
+import com.shopapi.dto.PageRequestDTO;
+import com.shopapi.dto.PageResponseDTO;
 import com.shopapi.dto.TodoDTO;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,9 @@ public interface TodoService {
     void modify(TodoDTO dto);
 
     void remove(Long tno);
+
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
+
 
     default TodoDTO entityToDTO(Todo todo){
 
