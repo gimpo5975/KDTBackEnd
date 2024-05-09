@@ -25,6 +25,8 @@ public class PageResponseDTO<E> {
         int end = (int) (Math.ceil(pageRequestDTO.getPage() / 10.0)) * 10;
         //현재 페이지 / 10.0 자리 올림 X 10
 
+        //시작 페이지
+        int start = end - 9;
 
 
     }
