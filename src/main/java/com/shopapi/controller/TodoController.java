@@ -1,5 +1,7 @@
 package com.shopapi.controller;
 
+import com.shopapi.dto.PageRequestDTO;
+import com.shopapi.dto.PageResponseDTO;
 import com.shopapi.dto.TodoDTO;
 import com.shopapi.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,14 @@ public class TodoController {
     @GetMapping("/{tno}")
     public TodoDTO get(@PathVariable("tno") Long tno){
         return todoService.get(tno);
+    }
+
+    @GetMapping("/list")
+    public PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO){
+
+        log.info("list.............."+ pageRequestDTO);
+
+        return todoService.getList(pageRequestDTO);
     }
 
 }
