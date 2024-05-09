@@ -17,6 +17,16 @@ public class PageResponseDTO<E> {
 
     public PageResponseDTO(List<E> dtoList, PageRequestDTO pageRequestDTO, long total){
 
+        this.dtoList = dtoList;
+        this.pageRequestDTO = pageRequestDTO;
+        this.totalCount = (int)total;
+
+        //끝페이지 end
+        int end = (int) (Math.ceil(pageRequestDTO.getPage() / 10.0)) * 10;
+        //현재 페이지 / 10.0 자리 올림 X 10
+
+
+
     }
 
 
