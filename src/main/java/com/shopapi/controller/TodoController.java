@@ -40,4 +40,23 @@ public class TodoController {
         return Map.of("TNO", tno);
     }
 
+    @PutMapping("/{tno}")
+    public Map<String, String> modify(@PathVariable("tno") Long tno,
+                                      @RequestBody TodoDTO todoDTO){
+
+        todoDTO.setTno(tno);//요청 받은 tno 와 todoDTO 의 tno 를 일치 시키기 위해서
+
+        todoService.modify(todoDTO);
+
+        return Map.of("RESULT", "SUCCESS");
+
+    }
+
+    @DeleteMapping("/{tno}")
+    public Map<String, String> remove(@PathVariable Long tno){
+        todoService.remove(tno);
+        return Map.of("RESULT", "SUCCESS");
+
+    }
+
 }
