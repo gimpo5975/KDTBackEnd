@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CustomServletConfig implements WebMvcConfigurer {
 
     @Override
-    public void addFormatters(FormatterRegistry registry) {
+    public void addFormatters(FormatterRegistry registry) {//LocalDateFormatter 클래스 addFormatters 에 등록
         log.info("-------------------------------");
         log.info("addFormatter");
         registry.addFormatter(new LocalDateFormatter());
