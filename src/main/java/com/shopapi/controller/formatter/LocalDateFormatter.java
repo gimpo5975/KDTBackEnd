@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class LocalDateFormatter implements Formatter<LocalDate> {
+public class LocalDateFormatter implements Formatter<LocalDate> { // CustomServletConfig 에 등록해서 사용
     @Override
     public LocalDate parse(String text, Locale locale) throws ParseException {
         return LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
